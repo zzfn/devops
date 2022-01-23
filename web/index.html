@@ -9,18 +9,13 @@
     <button onclick="test()">打包</button>
 </div>
 <script>
-    function test() {
-        fetch('/test', {
-            method: 'get',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(function (response) {
-            return response.json();
-        }).then(function (data) {
-            console.log(data);
-        });
+    let myWorker = new Worker('index.js');
+    myWorker.postMessage('Cool Dream');
+    myWorker.postMessage({name: 'huiYe', age: 26});
+    myWorker.onmessage = (res) => {
+        console.log('----', res.data, '----');
     }
+    myWorker.terminate()
 </script>
 </body>
 </html>
