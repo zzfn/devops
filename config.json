@@ -1,19 +1,13 @@
-[
-  {
-    "project": "test",
-    "url": "http://localhost:8080/test",
-    "info": {
-      "title": "Test12312",
-      "description": "Test",
-      "version": "0.0.1",
-      "contact": {
-        "name": "Test",
-        "url": "http://localhost:8080/test"
-      }
+{
+  "projects": [
+    {
+      "name": "test",
+      "url": "http://localhost:8080/test",
+      "build": "go build"
+    },
+    {
+      "name": "test2",
+      "url": "http://localhost:8080/test2"
     }
-  },
-  {
-    "project": "test2",
-    "url": "http://localhost:8080/test2"
-  }
-]
+  ]
+}
