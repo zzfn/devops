@@ -1,6 +1,10 @@
 package router
 
+import (
+	"devops/controller"
+	"net/http"
+)
+
 func Router() {
-	//http.HandleFunc("/", controller.ArticleList)
-	//http.HandleFunc("/es", controller.EsSearch)
+	http.HandleFunc("/", controller.GetList)
 }

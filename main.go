@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"devops/router"
 	"devops/ssh"
 	"fmt"
 	"io"
@@ -20,7 +21,7 @@ func cmd(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(ssh.Cmd(r.FormValue("cmd"))))
 }
 func main() {
-	http.HandleFunc("/", cmd)
+	router.Router()
 	http.ListenAndServe(":8080", nil)
 }
 
