@@ -2,12 +2,11 @@ package main
 
 import (
 	"bufio"
-	"encoding/json"
+	"devops/ssh"
 	"fmt"
 	"io"
 	"log"
 	"net/http"
-	"os"
 	"os/exec"
 	"strings"
 )
@@ -17,36 +16,12 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	go runBuild("git pull")
 	go runBuild("go build")
 }
-func main() {
-	readJson()
-	httpServer()
+func cmd(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte(ssh.Cmd(r.FormValue("cmd"))))
 }
-func readJson() {
-	filePtr, err := os.Open("./config.json")
-	if err != nil {
-		fmt.Println("文件打开失败 [Err:%s]", err.Error())
-		return
-	}
-	defer func(filePtr *os.File) {
-		err := filePtr.Close()
-		if err != nil {
-			return
-		}
-	}(filePtr)
-	var info Demo
-	// 创建json解码器
-	decoder := json.NewDecoder(filePtr)
-	err = decoder.Decode(&info)
-	if err != nil {
-		fmt.Println("解码失败", err.Error())
-	} else {
-		fmt.Println("解码成功")
-		for p := range info.Projects {
-			fmt.Println(info.Projects[p].Name)
-			fmt.Println(info.Projects[p].Url)
-		}
-	}
-
+func main() {
+	http.HandleFunc("/", cmd)
+	http.ListenAndServe(":8080", nil)
 }
 
 func httpServer() {
