@@ -6,16 +6,28 @@
 </head>
 <body>
 <div>
-    <button onclick="test()">打包</button>
+    <button onclick="test()">clone</button>
+    <button onclick="build()">打包</button>
+    <button onclick="send()">传输</button>
 </div>
 <script>
-    let myWorker = new Worker('index.js');
-    myWorker.postMessage('Cool Dream');
-    myWorker.postMessage({name: 'huiYe', age: 26});
-    myWorker.onmessage = (res) => {
-        console.log('----', res.data, '----');
+    function test() {
+        fetch('/repos').then(r => r.json()).then(r => {
+            console.log(r)
+        })
     }
-    myWorker.terminate()
+
+    function build() {
+        fetch('/build').then(r => r.json()).then(r => {
+            console.log(r)
+        })
+    }
+
+    function send() {
+        fetch('/send').then(r => r.json()).then(r => {
+            console.log(r)
+        })
+    }
 </script>
 </body>
 </html>

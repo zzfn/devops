@@ -6,5 +6,10 @@ import (
 )
 
 func Router() {
-	http.HandleFunc("/", controller.GetList)
+	http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("web"))))
+	http.HandleFunc("/test", controller.GetList)
+	http.HandleFunc("/repos", controller.Download)
+	http.HandleFunc("/build", controller.Build)
+	http.HandleFunc("/send", controller.Send)
+	http.ListenAndServe(":8080", nil)
 }
