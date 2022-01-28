@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <button onclick="test()">clone</button>
+    <button onclick="build()">打包</button>
+    <button onclick="send()">传输</button>
+</div>
+<script>
+    function test() {
+        fetch('/repos').then(r => r.json()).then(r => {
+            console.log(r)
+        })
+    }
+
+    function build() {
+        fetch('/build').then(r => r.json()).then(r => {
+            console.log(r)
+        })
+    }
+
+    function send() {
+        fetch('/send').then(r => r.json()).then(r => {
+            console.log(r)
+        })
+    }
+</script>
+</body>
+</html>

@@ -1,7 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"devops/db"
+	"devops/router"
+)
 
 func main() {
-	fmt.Printf("Hello, world!")
+	db.MysqlInit()
+	router.Router()
 }
