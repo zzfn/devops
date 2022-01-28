@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"devops/db"
 	"devops/router"
 	"devops/ssh"
 	"fmt"
@@ -21,6 +22,7 @@ func cmd(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(ssh.Cmd(r.FormValue("cmd"))))
 }
 func main() {
+	db.MysqlInit()
 	router.Router()
 	http.ListenAndServe(":8080", nil)
 }
