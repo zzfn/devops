@@ -20,7 +20,7 @@ func Download(w http.ResponseWriter, r *http.Request) {
 		}
 		projectList = append(projectList, projectItem)
 	}
-	util.Clone(projectList[0].Repo)
+	util.Clone(projectList[0].Repo, projectList[0].Name)
 	res, _ := json.Marshal(projectList)
 	w.Write(res)
 }
@@ -30,4 +30,7 @@ func Build(w http.ResponseWriter, r *http.Request) {
 }
 func Send(w http.ResponseWriter, r *http.Request) {
 	util.Send()
+}
+func Oss(w http.ResponseWriter, r *http.Request) {
+	util.PutOss()
 }

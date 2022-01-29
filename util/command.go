@@ -30,7 +30,6 @@ func shell(command string) error {
 				break
 			}
 			log.Print(readString)
-			fmt.Print(readString)
 		}
 	}()
 	return c.Run()

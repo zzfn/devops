@@ -9,6 +9,7 @@
     <button onclick="test()">clone</button>
     <button onclick="build()">打包</button>
     <button onclick="send()">传输</button>
+    <button onclick="oss()">oss</button>
 </div>
 <script>
     function test() {
@@ -25,6 +26,11 @@
 
     function send() {
         fetch('/send').then(r => r.json()).then(r => {
+            console.log(r)
+        })
+    }
+    function oss() {
+        fetch('/oss').then(r => r.json()).then(r => {
             console.log(r)
         })
     }

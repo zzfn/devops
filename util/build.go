@@ -5,6 +5,7 @@ import (
 )
 
 func Build() {
-	os.Chdir("workspace/react-webpack")
+	os.Chdir(BasePath + "/workspace/react-webpack")
 	Run("pnpm i")
+	Run("pnpm run build:prod")
 }

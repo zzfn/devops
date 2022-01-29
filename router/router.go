@@ -11,5 +11,6 @@ func Router() {
 	http.HandleFunc("/repos", controller.Download)
 	http.HandleFunc("/build", controller.Build)
 	http.HandleFunc("/send", controller.Send)
-	http.ListenAndServe(":8080", nil)
+	http.HandleFunc("/oss", controller.Oss)
+	http.ListenAndServe(":8088", nil)
 }
